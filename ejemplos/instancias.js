@@ -13,5 +13,5 @@ function Fruta(nombre) {
 }
 
 const limon = new Fruta ('limon'); 
-console.log(limon);
+console.log(limon); 
 limon.saluda();

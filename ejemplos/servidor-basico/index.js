@@ -19,20 +19,4 @@ servidor.listen(1337, '127.0.0.1');
 
 console.log('Servidor arrancado en http://127.0.0.1:1337');  //para ver en consola que has arrancado el servidor
 
-// npm (node package manager): instala librerías de node.js y herramientas para desarrollar. 
-// npx nodemon (npx solo instala temporalmente) (nodemon reinicia el servidor cada vez que hay cambios)
-
-    /*
-    nodemon] 2.0.20
-    [nodemon] to restart at any time, enter `rs`
-    [nodemon] watching path(s): *.*
-    [nodemon] watching extensions: js,mjs,json
-    [nodemon] starting `node index.js`
-    Servidor arrancado en http://127.0.0.1:1337
-    */
-
-    // npm init -y crea el package.json
-    // npm install chance
-    // npm repo chance (te abre en el browser el repo)
-
 
