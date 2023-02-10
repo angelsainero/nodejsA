@@ -52,3 +52,9 @@ function Superheroe() {
 // copiar todas las propiedades de los Superheroes al prototipo del Agente (01:56)
 Object.assign(Agente.prototype, new Superheroe());
 smith.vuela()
+
+
+//RESULTADO: 
+// Smith Vuela
+console.log(Agente.prototype)
+console.log(Persona.prototype)
