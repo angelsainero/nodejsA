@@ -7,5 +7,21 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <%= nombre %>
+    <%= apellido %>
+
+    <h2>Bucles</h2>
+    <% usuarios.forEach(usuario => { %>
+      <p>Usuario <%= usuario.nombre %> tiene <%= usuario.edad %></p>
+    <% }) %>
+
+    <h2>Condicionales</h2>
+    <% if (paridad) { %>
+      <p>El segundo actual es par</p>
+    <% }else { %> 
+      <p>el segundo actual es impar</p>
+      <% } %> 
+      <p>segundo actual: <%= segundoActual %></p>
+
   </body>
 </html>
