@@ -48,12 +48,23 @@ router.get('/producto/:nombre/talla/:talla/color/:color', (req, res , next) => {
 
 
 //GET recibiendo parametro query_string 
-//1127.0.0.1:3000/?talla=35&color=rojo& .......
+//http://127.0.0.1:3001/parametro_query_string?talla=35&color=rojo
 router.get ('/parametro_query_string', (req, res, next) => {
   const talla = req.query.talla;
   const color = req.query.color;
 
   res.send(`me has pedido talla ${talla} y color ${color}`)
+})
+
+//POST /enelbody
+router.post('/enelbody', (req,res,next) => {
+
+  const altura = req.body.altura;
+  const peso = req.body.peso;
+
+  console.log('BODY recibido', req.body)
+
+  res.send(`petición POST recibida con altura ${altura} y peso ${peso}`);
 })
 
 module.exports = router;
