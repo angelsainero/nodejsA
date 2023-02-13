@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+const {query, validationResult} = require('express-validator')
+// es lo mismo que poner: 
+// const expressValidator = require('express-validator')
+// const query = expressValidator.query
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -49,7 +54,14 @@ router.get('/producto/:nombre/talla/:talla/color/:color', (req, res , next) => {
 
 //GET recibiendo parametro query_string 
 //http://127.0.0.1:3001/parametro_query_string?talla=35&color=rojo
-router.get ('/parametro_query_string', (req, res, next) => {
+router.get ('/parametro_query_string', [ //array de validaciones
+query('talla').isNumeric().withMessage('debe ser numérico'), //1º
+query('color').custom(valor => { //personalizado  //2º
+  return valor === 'rojo';
+}).withMessage('debe ser rojo')
+]
+,(req, res, next) => {
+  validationResult(req).throw();
   const talla = req.query.talla;
   const color = req.query.color;
 

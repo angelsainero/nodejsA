@@ -43,6 +43,14 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+  //comprobar si es error de validación
+  if (err.array) { //si tiene un array sabemos que es de validación
+    // const errorInfo=err.array({onlyFirstError: true})
+    const errorInfo = err.errors[0];
+    err.message = `Error en ${errorInfo.location}, parametro ${errorInfo.param}, ${errorInfo.msg}`
+    err.status=422
+  }
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
