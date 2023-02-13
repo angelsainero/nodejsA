@@ -24,29 +24,36 @@ router.get('/angel', (req,res,next) => {
   res.send('soy Angel')
 })
 
-//recibiendo parametros
+//GET recibiendo parametros
 router.get('/parametro_en_ruta/:numero', (req, res , next) => {
   console.log(req.params)
   const numero = req.params.numero;
   res.send('me has pedido el numero ' + numero)
 });
-// con parametro opcional
+//GET con parametro opcional
 router.get('/parametro_en_ruta/:numero?', (req, res , next) => {
   console.log(req.params)
   const numero = req.params.numero;
   res.send('opcional me has pedido el numero ' + numero)
 });
 
-//varios parametros, se pueden meter expresiones regulares con ()
+//GET varios parametros, se pueden meter expresiones regulares con ()
 router.get('/producto/:nombre/talla/:talla/color/:color', (req, res , next) => {
   const nombre = req.params.nombre;
   const talla = req.params.talla;
   const color = req.params.color;
 
-  res.send(`Me pediste ${nombre} ${talla} ${color}`)
-
-  
+  res.send(`Me pediste ${nombre} ${talla} ${color}`) 
 });
 
+
+//GET recibiendo parametro query_string 
+//1127.0.0.1:3000/?talla=35&color=rojo& .......
+router.get ('/parametro_query_string', (req, res, next) => {
+  const talla = req.query.talla;
+  const color = req.query.color;
+
+  res.send(`me has pedido talla ${talla} y color ${color}`)
+})
 
 module.exports = router;
