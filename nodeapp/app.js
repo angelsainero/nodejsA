@@ -9,6 +9,7 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set('x-powered-by', false);
 
 //middlewares
 app.use(logger("dev")); //el que hace log en la consola
