@@ -21,7 +21,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.locals.title = 'NodeApp';  //si queremos que el titulo sea para todos los renders.
+/**
+ * Rutas del API
+ */
 
+app.use('/api/agentes', require('./routes/api/agentes'))
+
+/**
+ * Rutas del Website
+ */
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 
