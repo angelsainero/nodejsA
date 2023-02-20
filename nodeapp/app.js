@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
 
 require('./lib/connectMongoose');
 
@@ -25,7 +26,7 @@ app.locals.title = 'NodeApp';  //si queremos que el titulo sea para todos los re
  * Rutas del API
  */
 
-app.use('/api/agentes', require('./routes/api/agentes'))
+app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'))
 
 /**
  * Rutas del Website
