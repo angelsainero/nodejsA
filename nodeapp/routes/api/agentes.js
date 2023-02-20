@@ -53,11 +53,23 @@ router.post("/", async (req, res, next) => {
     const agenteGuardado = await agente.save();
     
     res.json({ result: agenteGuardado });
-    
+
   } catch (error) {
     next(error);
   }
 });
 
+// DELETE /api/agentes/:(id)
+// Borra un agente
+router.put("/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Agente.deleteOne({_id: id}); 
+    res.json();
+    
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
