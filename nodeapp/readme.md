@@ -29,3 +29,10 @@ PS C:\Users\angel\Downloads\mongosh-1.7.1-win32-x64> .\mongosh.exe
 ## Install Mongoose
 
 PS C:\Users\angel\Desktop\nodejsA> npm i mongoose  
+
+
+## API Methods
+
+### GT /api/agentes
+Devuelve json con lista de agentes
+
