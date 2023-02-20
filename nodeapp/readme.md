@@ -5,7 +5,10 @@ Install dependencies with:
 npm install
 ```
 
-
+Initialize the database with: 
+```
+npm run initDB
+```
 
 Strart in development mode:
 ```sh
@@ -35,4 +38,6 @@ PS C:\Users\angel\Desktop\nodejsA> npm i mongoose
 
 ### GT /api/agentes
 Devuelve json con lista de agentes
+
+
 
