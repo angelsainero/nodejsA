@@ -16,6 +16,15 @@ router.get("/", async (req, res, next) => {
     const skip = req.query.skip;
     //limit
     const limit = req.query.limit;
+    //ordenación
+    const sort = req.query.sort
+    //selección de campos
+    const fields = req.query.fields
+
+    // Ejemplos:
+    // http://localhost:3001/api/agentes?skip=2&limit=2&sort=name
+    // http://localhost:3001/api/agentes?skip=2&limit=2&sort=name&fields=name -_id
+
 
     const filtro = {}
 
@@ -26,7 +35,7 @@ router.get("/", async (req, res, next) => {
     if (filtreByName) {  //este if permite o no poner filtro
       filtro.name = filtreByName
     }
-    const agentes = await Agente.lista(filtro, skip, limit);
+    const agentes = await Agente.lista(filtro, skip, limit, sort, fields);
 
     res.json({ results: agentes });
   } catch (error) {
@@ -40,6 +49,11 @@ router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
     const agente = await Agente.findById(id);
+
+    if (agente) {
+      agente.saluda()  //sacaría por la consola soy el agente.....
+    }
+
     res.json({ results: agente });
   } catch (error) {
     next(error);

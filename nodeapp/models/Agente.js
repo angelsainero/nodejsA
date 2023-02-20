@@ -14,14 +14,20 @@ const agenteSchema = mongoose.Schema(
 // Agentes.sendEmail({subjet: "assdsd"}) --> Método instancia (no usar arrow functions)
 
 //creamos un modelo que saque lista de agentes
-agenteSchema.statics.lista = function(filtro, skip, limit){
+agenteSchema.statics.lista = function(filtro, skip, limit, sort, fields){
   const query = Agente.find(filtro);
   query.skip(skip)
   query.limit(limit)
+  query.sort(sort)
+  query.select(fields) 
   // ...
   return query.exec()
 }
 
+//metodo instancia
+agenteSchema.methods.saluda = function () {
+  console.log('Hola, soy Agente, ', this.name)
+}
 
 // crear el modelo de Agente
 const Agente = mongoose.model("Agentes", agenteSchema);  //lleva pluralizacion
