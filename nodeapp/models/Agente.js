@@ -14,8 +14,10 @@ const agenteSchema = mongoose.Schema(
 // Agentes.sendEmail({subjet: "assdsd"}) --> Método instancia (no usar arrow functions)
 
 //creamos un modelo que saque lista de agentes
-agenteSchema.statics.lista = function(filtro){
+agenteSchema.statics.lista = function(filtro, skip, limit){
   const query = Agente.find(filtro);
+  query.skip(skip)
+  query.limit(limit)
   // ...
   return query.exec()
 }

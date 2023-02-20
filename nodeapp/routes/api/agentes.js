@@ -9,8 +9,14 @@ const Agente = require("../../models/Agente");
 // devuelve una lista de agentes
 router.get("/", async (req, res, next) => {
   try {
+    //filtros
     const filtreByAge= req.query.age;
     const filtreByName = req.query.name;
+    //paginacion
+    const skip = req.query.skip;
+    //limit
+    const limit = req.query.limit;
+
     const filtro = {}
 
     if (filtreByAge) {  //este if permite o no poner filtro
@@ -20,8 +26,8 @@ router.get("/", async (req, res, next) => {
     if (filtreByName) {  //este if permite o no poner filtro
       filtro.name = filtreByName
     }
-    const agentes = await Agente.lista(filtro);
-    
+    const agentes = await Agente.lista(filtro, skip, limit);
+
     res.json({ results: agentes });
   } catch (error) {
     next(error);
