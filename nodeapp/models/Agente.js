@@ -9,8 +9,20 @@ const agenteSchema = mongoose.Schema(
   { collection: "agentes" }
 );
 
+// TIPOS DE MÉTODOS: 
+// Agente.createWithColor('red') --> Método estático
+// Agentes.sendEmail({subjet: "assdsd"}) --> Método instancia (no usar arrow functions)
+
+//creamos un modelo que saque lista de agentes
+agenteSchema.statics.lista = function(filtro){
+  const query = Agente.find(filtro);
+  // ...
+  return query.exec()
+}
+
+
 // crear el modelo de Agente
-const Agente = mongoose.model("Agentes", agenteSchema);  //leva pluralizacion
+const Agente = mongoose.model("Agentes", agenteSchema);  //lleva pluralizacion
 
 //exportar el modelo
 module.exports = Agente;

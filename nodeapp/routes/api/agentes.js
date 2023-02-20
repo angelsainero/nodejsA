@@ -2,11 +2,26 @@ const express = require("express");
 const router = express.Router();
 const Agente = require("../../models/Agente");
 
+
+// CRUD: Create, read, update, delete
+
 // cuando reciba un GET a /api/agentes
 // devuelve una lista de agentes
 router.get("/", async (req, res, next) => {
   try {
-    const agentes = await Agente.find();
+    const filtreByAge= req.query.age;
+    const filtreByName = req.query.name;
+    const filtro = {}
+
+    if (filtreByAge) {  //este if permite o no poner filtro
+      filtro.age = filtreByAge
+    }
+        
+    if (filtreByName) {  //este if permite o no poner filtro
+      filtro.name = filtreByName
+    }
+    const agentes = await Agente.lista(filtro);
+    
     res.json({ results: agentes });
   } catch (error) {
     next(error);
@@ -66,7 +81,7 @@ router.put("/:id", async (req, res, next) => {
     const id = req.params.id;
     await Agente.deleteOne({_id: id}); 
     res.json();
-    
+
   } catch (error) {
     next(error);
   }
